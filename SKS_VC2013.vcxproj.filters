@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="原始程式檔">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="標頭檔">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="資源檔">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ImageData">
+      <UniqueIdentifier>{a1699636-13e3-4199-a295-58717ee374fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModelForm">
+      <UniqueIdentifier>{b8427888-c467-460a-9e2d-4b584963108c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreviewForm">
+      <UniqueIdentifier>{0eee60d4-b5d8-4cbc-bc0e-4b3f235be8c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{6b7e45a0-2357-43c9-9a70-567f79c0b3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Furniture">
+      <UniqueIdentifier>{becf1446-e63a-4a25-8688-cce55e1098f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{ecf84096-751b-43db-9289-d047adaed575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapEditer">
+      <UniqueIdentifier>{6004340a-1776-4b0b-a646-8576bbb67327}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="app.ico">
+      <Filter>資源檔</Filter>
+    </None>
+    <None Include="drawMap.Image.bmp">
+      <Filter>資源檔</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SKS_VC2013.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageData\TImageData.cpp">
+      <Filter>ImageData</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelForm\ModelForm.cpp">
+      <Filter>ModelForm</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\CFileConfig.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\ColorFunctionUnit.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>標頭檔</Filter>
+    </ClCompile>
+    <ClCompile Include="Laser.cpp">
+      <Filter>標頭檔</Filter>
+    </ClCompile>
+    <ClCompile Include="Furniture\Furniture.cpp">
+      <Filter>Furniture</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>標頭檔</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditer\MapEditer.cpp">
+      <Filter>MapEditer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Form1.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageData\TImageData.h">
+      <Filter>ImageData</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelForm\ModelForm.h">
+      <Filter>ModelForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Preview\PreviewForm.h">
+      <Filter>PreviewForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\CDefaultConfig.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\CFileConfig.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\ColorFunctionUnit.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\UtilityTool.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="MainForm.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Furniture\Furniture.h">
+      <Filter>Furniture</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditer\MapEditer.h">
+      <Filter>MapEditer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>資源檔</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resX">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Map.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelForm\ModelForm.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\PreviewForm.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laser.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Furniture\Furniture.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camera\Camera.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapEditer\MapEditer.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
