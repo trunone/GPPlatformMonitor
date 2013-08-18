@@ -141,6 +141,12 @@ namespace SKS_VC2013 {
 	private: System::Windows::Forms::Button^  Save_set;
 
 	private: System::Windows::Forms::Button^  Reset_set;
+private: System::Windows::Forms::TextBox^  Trashcan1;
+private: System::Windows::Forms::TextBox^  Trashcan2;
+private: System::Windows::Forms::TextBox^  Trashcan3;
+private: System::Windows::Forms::TextBox^  Trashcan4;
+private: System::Windows::Forms::TextBox^  Trashcan5;
+private: System::Windows::Forms::Label^  label19;
 
 	private: System::ComponentModel::IContainer^  components;
 
@@ -243,8 +249,14 @@ namespace SKS_VC2013 {
 			this->label17 = (gcnew System::Windows::Forms::Label());
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->Trashcan1 = (gcnew System::Windows::Forms::TextBox());
+			this->Trashcan2 = (gcnew System::Windows::Forms::TextBox());
+			this->Trashcan3 = (gcnew System::Windows::Forms::TextBox());
+			this->Trashcan4 = (gcnew System::Windows::Forms::TextBox());
+			this->Trashcan5 = (gcnew System::Windows::Forms::TextBox());
 			this->Save_set = (gcnew System::Windows::Forms::Button());
 			this->Reset_set = (gcnew System::Windows::Forms::Button());
+			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -291,7 +303,7 @@ namespace SKS_VC2013 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(6, 38);
+			this->label1->Location = System::Drawing::Point(6, 35);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(81, 12);
 			this->label1->TabIndex = 5;
@@ -300,7 +312,7 @@ namespace SKS_VC2013 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(6, 66);
+			this->label2->Location = System::Drawing::Point(6, 63);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(86, 12);
 			this->label2->TabIndex = 11;
@@ -349,7 +361,7 @@ namespace SKS_VC2013 {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(6, 94);
+			this->label3->Location = System::Drawing::Point(6, 91);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(96, 12);
 			this->label3->TabIndex = 17;
@@ -398,7 +410,7 @@ namespace SKS_VC2013 {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(6, 122);
+			this->label4->Location = System::Drawing::Point(6, 119);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(87, 12);
 			this->label4->TabIndex = 23;
@@ -447,7 +459,7 @@ namespace SKS_VC2013 {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(6, 150);
+			this->label5->Location = System::Drawing::Point(6, 147);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(87, 12);
 			this->label5->TabIndex = 29;
@@ -496,7 +508,7 @@ namespace SKS_VC2013 {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(6, 178);
+			this->label6->Location = System::Drawing::Point(6, 175);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(69, 12);
 			this->label6->TabIndex = 35;
@@ -545,7 +557,7 @@ namespace SKS_VC2013 {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(6, 206);
+			this->label7->Location = System::Drawing::Point(6, 203);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(72, 12);
 			this->label7->TabIndex = 41;
@@ -594,7 +606,7 @@ namespace SKS_VC2013 {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(6, 234);
+			this->label8->Location = System::Drawing::Point(6, 231);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(82, 12);
 			this->label8->TabIndex = 47;
@@ -643,7 +655,7 @@ namespace SKS_VC2013 {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(6, 262);
+			this->label9->Location = System::Drawing::Point(6, 259);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(67, 12);
 			this->label9->TabIndex = 53;
@@ -692,7 +704,7 @@ namespace SKS_VC2013 {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(6, 290);
+			this->label10->Location = System::Drawing::Point(6, 287);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(83, 12);
 			this->label10->TabIndex = 59;
@@ -741,7 +753,7 @@ namespace SKS_VC2013 {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(6, 318);
+			this->label11->Location = System::Drawing::Point(6, 315);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(70, 12);
 			this->label11->TabIndex = 65;
@@ -790,7 +802,7 @@ namespace SKS_VC2013 {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(6, 346);
+			this->label12->Location = System::Drawing::Point(6, 343);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(61, 12);
 			this->label12->TabIndex = 71;
@@ -839,7 +851,7 @@ namespace SKS_VC2013 {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(6, 374);
+			this->label13->Location = System::Drawing::Point(6, 371);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(46, 12);
 			this->label13->TabIndex = 77;
@@ -890,7 +902,7 @@ namespace SKS_VC2013 {
 			this->label14->AutoSize = true;
 			this->label14->Font = (gcnew System::Drawing::Font(L"新細明體", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(136)));
-			this->label14->Location = System::Drawing::Point(125, 7);
+			this->label14->Location = System::Drawing::Point(123, 7);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(20, 16);
 			this->label14->TabIndex = 78;
@@ -901,7 +913,7 @@ namespace SKS_VC2013 {
 			this->label15->AutoSize = true;
 			this->label15->Font = (gcnew System::Drawing::Font(L"新細明體", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(136)));
-			this->label15->Location = System::Drawing::Point(179, 7);
+			this->label15->Location = System::Drawing::Point(177, 7);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(20, 16);
 			this->label15->TabIndex = 79;
@@ -912,7 +924,7 @@ namespace SKS_VC2013 {
 			this->label16->AutoSize = true;
 			this->label16->Font = (gcnew System::Drawing::Font(L"新細明體", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(136)));
-			this->label16->Location = System::Drawing::Point(222, 7);
+			this->label16->Location = System::Drawing::Point(220, 7);
 			this->label16->Name = L"label16";
 			this->label16->Size = System::Drawing::Size(51, 16);
 			this->label16->TabIndex = 80;
@@ -923,7 +935,7 @@ namespace SKS_VC2013 {
 			this->label17->AutoSize = true;
 			this->label17->Font = (gcnew System::Drawing::Font(L"新細明體", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(136)));
-			this->label17->Location = System::Drawing::Point(276, 7);
+			this->label17->Location = System::Drawing::Point(273, 7);
 			this->label17->Name = L"label17";
 			this->label17->Size = System::Drawing::Size(56, 16);
 			this->label17->TabIndex = 81;
@@ -934,7 +946,7 @@ namespace SKS_VC2013 {
 			this->label18->AutoSize = true;
 			this->label18->Font = (gcnew System::Drawing::Font(L"新細明體", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(136)));
-			this->label18->Location = System::Drawing::Point(334, 7);
+			this->label18->Location = System::Drawing::Point(332, 7);
 			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(51, 16);
 			this->label18->TabIndex = 82;
@@ -1007,10 +1019,55 @@ namespace SKS_VC2013 {
 			this->flowLayoutPanel1->Controls->Add(this->EndArea3);
 			this->flowLayoutPanel1->Controls->Add(this->EndArea4);
 			this->flowLayoutPanel1->Controls->Add(this->EndArea5);
-			this->flowLayoutPanel1->Location = System::Drawing::Point(108, 29);
+			this->flowLayoutPanel1->Controls->Add(this->Trashcan1);
+			this->flowLayoutPanel1->Controls->Add(this->Trashcan2);
+			this->flowLayoutPanel1->Controls->Add(this->Trashcan3);
+			this->flowLayoutPanel1->Controls->Add(this->Trashcan4);
+			this->flowLayoutPanel1->Controls->Add(this->Trashcan5);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(105, 29);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(284, 367);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(280, 395);
 			this->flowLayoutPanel1->TabIndex = 83;
+			// 
+			// Trashcan1
+			// 
+			this->Trashcan1->Location = System::Drawing::Point(3, 367);
+			this->Trashcan1->Name = L"Trashcan1";
+			this->Trashcan1->Size = System::Drawing::Size(50, 22);
+			this->Trashcan1->TabIndex = 77;
+			this->Trashcan1->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+			// 
+			// Trashcan2
+			// 
+			this->Trashcan2->Location = System::Drawing::Point(59, 367);
+			this->Trashcan2->Name = L"Trashcan2";
+			this->Trashcan2->Size = System::Drawing::Size(50, 22);
+			this->Trashcan2->TabIndex = 87;
+			this->Trashcan2->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+			// 
+			// Trashcan3
+			// 
+			this->Trashcan3->Location = System::Drawing::Point(115, 367);
+			this->Trashcan3->Name = L"Trashcan3";
+			this->Trashcan3->Size = System::Drawing::Size(50, 22);
+			this->Trashcan3->TabIndex = 88;
+			this->Trashcan3->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+			// 
+			// Trashcan4
+			// 
+			this->Trashcan4->Location = System::Drawing::Point(171, 367);
+			this->Trashcan4->Name = L"Trashcan4";
+			this->Trashcan4->Size = System::Drawing::Size(50, 22);
+			this->Trashcan4->TabIndex = 89;
+			this->Trashcan4->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+			// 
+			// Trashcan5
+			// 
+			this->Trashcan5->Location = System::Drawing::Point(227, 367);
+			this->Trashcan5->Name = L"Trashcan5";
+			this->Trashcan5->Size = System::Drawing::Size(50, 22);
+			this->Trashcan5->TabIndex = 90;
+			this->Trashcan5->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// Save_set
 			// 
@@ -1033,12 +1090,22 @@ namespace SKS_VC2013 {
 			this->Reset_set->UseVisualStyleBackColor = true;
 			this->Reset_set->Click += gcnew System::EventHandler(this, &Furniture::Reset_set_Click);
 			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Location = System::Drawing::Point(6, 399);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(47, 12);
+			this->label19->TabIndex = 86;
+			this->label19->Text = L"Trashcan";
+			// 
 			// Furniture
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
-			this->ClientSize = System::Drawing::Size(399, 402);
+			this->ClientSize = System::Drawing::Size(395, 427);
+			this->Controls->Add(this->label19);
 			this->Controls->Add(this->Reset_set);
 			this->Controls->Add(this->Save_set);
 			this->Controls->Add(this->label14);
@@ -1141,6 +1208,12 @@ private: System::Void Furniture_Load(System::Object^  sender, System::EventArgs^
 		Bed_door4->Text = System::Convert::ToString(D_Furniture->M_BedRM.door.Height);
 		Bed_door5->Text = System::Convert::ToString(D_Furniture->M_BedRM.door.Angle);
 
+		Trashcan1->Text = System::Convert::ToString(D_Furniture->M_Trashcan.x);
+		Trashcan2->Text = System::Convert::ToString(D_Furniture->M_Trashcan.y);
+		Trashcan3->Text = System::Convert::ToString(D_Furniture->M_Trashcan.Width);
+		Trashcan4->Text = System::Convert::ToString(D_Furniture->M_Trashcan.Height);
+		Trashcan5->Text = System::Convert::ToString(D_Furniture->M_Trashcan.Angle);
+
 		ChargeArea1->Text = System::Convert::ToString(D_Furniture->M_ChargeArea.x);
 		ChargeArea2->Text = System::Convert::ToString(D_Furniture->M_ChargeArea.y);
 		ChargeArea3->Text = System::Convert::ToString(D_Furniture->M_ChargeArea.Width);
@@ -1228,6 +1301,12 @@ private: System::Void Furniture_Load(System::Object^  sender, System::EventArgs^
 				element->SetAttribute("Width",Bed_door3->Text);
 				element->SetAttribute("Height",Bed_door4->Text);
 				element->SetAttribute("Angle",Bed_door5->Text);
+			}else if(element->Name == "Trashcan"){
+				element->SetAttribute("x",Trashcan1->Text);
+				element->SetAttribute("y",Trashcan2->Text);
+				element->SetAttribute("Width",Trashcan3->Text);
+				element->SetAttribute("Height",Trashcan4->Text);
+				element->SetAttribute("Angle",Trashcan5->Text);
 			}else if(element->Name == "ChargeArea"){
 				element->SetAttribute("x",ChargeArea1->Text);
 				element->SetAttribute("y",ChargeArea2->Text);

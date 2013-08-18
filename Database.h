@@ -125,6 +125,7 @@
 			Furniture_site door;
 		}M_BedRM;
 
+		Furniture_site M_Trashcan;
 		Furniture_site M_ChargeArea;
 		Furniture_site M_EndArea;
 	};

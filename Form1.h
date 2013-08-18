@@ -782,11 +782,17 @@ namespace SKS_VC2013 {
 		}catch(SocketException^){}
 	}
 	private: System::Void Client_set_Click(System::Object^  sender, System::EventArgs^  e) {
-				 establishSendSocket();
-				 backgroundWorker2->RunWorkerAsync();
-				 
-				 timer2->Start();
-				 timer3->Start();
+				 if (Client_set->Text == "Close"){
+					 ClientSocket->Close();
+					 timer2->Stop();
+					 timer3->Stop();
+					 Client_set->Text = "Set";
+				 }else{
+					 establishSendSocket();
+					 backgroundWorker2->RunWorkerAsync();
+					 timer2->Start();
+					 timer3->Start();
+				 }
 			 }
 	private: System::Void backgroundWorker2_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e) {
 				 waitAcceptSocket();
@@ -881,6 +887,12 @@ namespace SKS_VC2013 {
 					D_Furniture->M_BedRM.door.Width = System::Convert::ToDouble(element->GetAttribute("Width"));
 					D_Furniture->M_BedRM.door.Height = System::Convert::ToDouble(element->GetAttribute("Height"));
 					D_Furniture->M_BedRM.door.Angle = System::Convert::ToDouble(element->GetAttribute("Angle"));
+				}else if(element->Name =="Trashcan"){
+					D_Furniture->M_Trashcan.x = System::Convert::ToDouble(element->GetAttribute("x"));
+					D_Furniture->M_Trashcan.y = System::Convert::ToDouble(element->GetAttribute("y"));
+					D_Furniture->M_Trashcan.Width = System::Convert::ToDouble(element->GetAttribute("Width"));
+					D_Furniture->M_Trashcan.Height = System::Convert::ToDouble(element->GetAttribute("Height"));
+					D_Furniture->M_Trashcan.Angle = System::Convert::ToDouble(element->GetAttribute("Angle"));
 				}else if(element->Name =="ChargeArea"){
 					D_Furniture->M_ChargeArea.x = System::Convert::ToDouble(element->GetAttribute("x"));
 					D_Furniture->M_ChargeArea.y = System::Convert::ToDouble(element->GetAttribute("y"));
@@ -1057,7 +1069,7 @@ public:	void Read_Robot(){
 
 //! Control and Send.
 public:	void send(){
-			if(Client_already){
+			if(Client_already && ClientSocket->Connected){
 				fileName = "Robot_Command.xml";
 				ClientSocket->SendFile(fileName);
 			}
@@ -1227,28 +1239,22 @@ private: System::Void mapEditerToolStripMenuItem_Click(System::Object^  sender, 
 		 }
 
 private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e) {
-			 if(Client_already){
-				 if (Call_back->Checked){
+			 if(Client_already && ClientSocket->Connected){
+				 if (Call_back->Checked && ClientSocket->Connected){
 					 fileName = "Robot_Request.xml";
 					 ClientSocket->SendFile(fileName);
 				 }
 				 if (Auto_check->Checked){
 					 fileName = "Robot_Command.xml";
 					 ClientSocket->SendFile(fileName);
+					 fileName = "Robot_Simulator.xml";
+					 ClientSocket->SendFile(fileName);
 
-					 FileInfo^ fg = gcnew FileInfo("Robot_Simulator.xml");
-					 FileStream^ fs = fg->OpenRead();
-
-					 if(fs->CanRead){
-						 fs->Close();
-						 fileName = "Robot_Simulator.xml";
-						 ClientSocket->SendFile(fileName);
-					 }
-					 
 					 D_Order->X = R_Robot->X;
 					 D_Order->Y = R_Robot->Y;
 					 D_Order->Radian = R_Robot->Radian;
 				 }
+				 Client_set->Text = "Close";
 			 }
 		 }
 //! Timing Set
@@ -1322,7 +1328,7 @@ private: System::Void Auto_check_CheckedChanged(System::Object^  sender, System:
 		 }
 
 private: System::Void Send_Config_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if(Client_already){
+			 if(Client_already && ClientSocket->Connected){
 				 fileName = "Robot_ReloadConfig.xml";
 				 ClientSocket->SendFile(fileName);
 			 }

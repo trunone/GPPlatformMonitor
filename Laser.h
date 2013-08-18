@@ -79,7 +79,10 @@ namespace SKS_VC2013 {
 		/// </summary>
 
 		Bitmap^ mBMP;
-		Graphics^ mGraphic;
+	private: System::Windows::Forms::Label^  Laser_Dis;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label6;
+			 Graphics^ mGraphic;
 	
 
 
@@ -117,6 +120,9 @@ namespace SKS_VC2013 {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->R_Robot_Check = (gcnew System::Windows::Forms::CheckBox());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->Laser_Dis = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Laser_PB))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->groupBox3->SuspendLayout();
@@ -136,12 +142,16 @@ namespace SKS_VC2013 {
 			// 
 			// Laser_PB
 			// 
+			this->Laser_PB->BackColor = System::Drawing::Color::Transparent;
 			this->Laser_PB->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"Laser_PB.Image")));
 			this->Laser_PB->Location = System::Drawing::Point(12, 34);
 			this->Laser_PB->Name = L"Laser_PB";
 			this->Laser_PB->Size = System::Drawing::Size(500, 500);
 			this->Laser_PB->TabIndex = 1;
 			this->Laser_PB->TabStop = false;
+			this->Laser_PB->MouseEnter += gcnew System::EventHandler(this, &Laser::Laser_PB_MouseEnter);
+			this->Laser_PB->MouseLeave += gcnew System::EventHandler(this, &Laser::Laser_PB_MouseLeave);
+			this->Laser_PB->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Laser::Laser_PB_MouseMove);
 			// 
 			// groupBox1
 			// 
@@ -362,12 +372,46 @@ namespace SKS_VC2013 {
 			// 
 			this->timer1->Tick += gcnew System::EventHandler(this, &Laser::timer1_Tick);
 			// 
+			// Laser_Dis
+			// 
+			this->Laser_Dis->AllowDrop = true;
+			this->Laser_Dis->AutoSize = true;
+			this->Laser_Dis->BackColor = System::Drawing::Color::White;
+			this->Laser_Dis->Location = System::Drawing::Point(245, 421);
+			this->Laser_Dis->Name = L"Laser_Dis";
+			this->Laser_Dis->Size = System::Drawing::Size(11, 12);
+			this->Laser_Dis->TabIndex = 3;
+			this->Laser_Dis->Text = L"0";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->BackColor = System::Drawing::Color::White;
+			this->label5->Location = System::Drawing::Point(371, 286);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(23, 12);
+			this->label5->TabIndex = 4;
+			this->label5->Text = L"255";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->BackColor = System::Drawing::Color::White;
+			this->label6->Location = System::Drawing::Point(467, 286);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(23, 12);
+			this->label6->TabIndex = 5;
+			this->label6->Text = L"490";
+			// 
 			// Laser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
 			this->ClientSize = System::Drawing::Size(637, 540);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->Laser_Dis);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->Laser_PB);
 			this->Controls->Add(this->R_Laser_check);
@@ -436,6 +480,23 @@ private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e
 				R_Position->y = 0;
 				R_Position->ang = 0;
 			}
+		 }
+private: System::Void Laser_PB_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+			 Laser_Dis->Visible = true;
+		 }
+private: System::Void Laser_PB_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
+			 Laser_Dis->Visible = false;
+		 }
+private: System::Void Laser_PB_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			 double mos_x = e->X-250;
+			 double mos_y = e->Y-250;
+
+			 int d = sqrt(pow(mos_x,2)+pow(mos_y,2));
+			 
+			 d = d*2*(Map_Width-D_Robot->R)/Laser_Width;
+
+			 Laser_Dis->Text = System::Convert::ToString(d);
+			 Laser_Dis->Location = Point(e->X+12,e->Y+20);
 		 }
 };
 }

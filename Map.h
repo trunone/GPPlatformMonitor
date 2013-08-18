@@ -39,7 +39,8 @@ namespace SKS_VC2013 {
 	private: System::Windows::Forms::Button^  Map_Save;
 	private: System::Windows::Forms::ComboBox^  Spa_CB;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::CheckBox^  Save_Position;
+	private: System::Windows::Forms::CheckBox^  Re_Position;
+
 
 
 
@@ -100,7 +101,7 @@ namespace SKS_VC2013 {
 			this->Furniture_Box = (gcnew System::Windows::Forms::ComboBox());
 			this->Map_Save = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->Save_Position = (gcnew System::Windows::Forms::CheckBox());
+			this->Re_Position = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->drawMap))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -226,8 +227,9 @@ namespace SKS_VC2013 {
 			// Furniture_Box
 			// 
 			this->Furniture_Box->FormattingEnabled = true;
-			this->Furniture_Box->Items->AddRange(gcnew cli::array< System::Object^  >(10) {L"None", L"LivingRM_Sofa", L"LivingRM_Table", 
-				L"LivingRM_Cabinet", L"DiningRM_Table", L"DiningRM_Chair", L"Library_Desk", L"Library_Chair", L"Library_Cabinet", L"BedRM_Bed"});
+			this->Furniture_Box->Items->AddRange(gcnew cli::array< System::Object^  >(13) {L"None", L"LivingRM_Sofa", L"LivingRM_Table", 
+				L"LivingRM_Cabinet", L"DiningRM_Table", L"DiningRM_Chair", L"Library_Desk", L"Library_Chair", L"Library_Cabinet", L"BedRM_Bed", 
+				L"Trashcan", L"ChargeArea", L"EndArea"});
 			this->Furniture_Box->Location = System::Drawing::Point(53, 18);
 			this->Furniture_Box->Name = L"Furniture_Box";
 			this->Furniture_Box->Size = System::Drawing::Size(116, 20);
@@ -253,16 +255,16 @@ namespace SKS_VC2013 {
 			this->label3->TabIndex = 8;
 			this->label3->Text = L"Setting Furniture";
 			// 
-			// Save_Position
+			// Re_Position
 			// 
-			this->Save_Position->AutoSize = true;
-			this->Save_Position->Location = System::Drawing::Point(432, 24);
-			this->Save_Position->Name = L"Save_Position";
-			this->Save_Position->Size = System::Drawing::Size(61, 16);
-			this->Save_Position->TabIndex = 9;
-			this->Save_Position->Text = L"Position";
-			this->Save_Position->UseVisualStyleBackColor = true;
-			this->Save_Position->CheckedChanged += gcnew System::EventHandler(this, &Map::Save_Position_CheckedChanged);
+			this->Re_Position->AutoSize = true;
+			this->Re_Position->Location = System::Drawing::Point(432, 24);
+			this->Re_Position->Name = L"Re_Position";
+			this->Re_Position->Size = System::Drawing::Size(61, 16);
+			this->Re_Position->TabIndex = 9;
+			this->Re_Position->Text = L"Position";
+			this->Re_Position->UseVisualStyleBackColor = true;
+			this->Re_Position->CheckedChanged += gcnew System::EventHandler(this, &Map::Re_Position_CheckedChanged);
 			// 
 			// Map
 			// 
@@ -270,7 +272,7 @@ namespace SKS_VC2013 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
 			this->ClientSize = System::Drawing::Size(608, 651);
-			this->Controls->Add(this->Save_Position);
+			this->Controls->Add(this->Re_Position);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->Map_Save);
 			this->Controls->Add(this->Re_Movement);
@@ -335,6 +337,7 @@ namespace SKS_VC2013 {
 		drawObject(D_Furniture->M_BedRM.door,10);
 		drawObject(D_Furniture->M_ChargeArea,11);
 		drawObject(D_Furniture->M_EndArea,12);
+		drawObject(D_Furniture->M_Trashcan,13);
 		mBMP_base = mBMP;
 	}
 	
@@ -357,7 +360,11 @@ namespace SKS_VC2013 {
 		
 		if(num == 11)	mGraphic->DrawLine(yellowPen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
 		else if(num == 12)	mGraphic->DrawLine(redPen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
-		else {
+		else if(num == 13){
+			SolidBrush^ TrashcanBrush = gcnew SolidBrush( Color::White );
+
+			mGraphic->FillPie(TrashcanBrush,(int)object.x ,(int)object.y ,(int)object.Width ,(int)object.Height,(int) 0,(int) 360 );
+		}else {
 			mGraphic->DrawLine(whitePen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
 			_w = (((int)object.Angle%90 )==0) ?object.Width :object.Width+2;
 			if(num == 0){
@@ -408,9 +415,9 @@ namespace SKS_VC2013 {
 				 D_Robot->Y_tar = D_Robot->Y - r*sin(D_Robot->Angle*PI/180);
 
 				 Pen^ bluePen = gcnew Pen(Color::Blue, 3);
-				 SolidBrush^ saddleBrownBrush = gcnew SolidBrush( Color::HotPink );
+				 SolidBrush^ HotPinkBrush = gcnew SolidBrush( Color::HotPink );
 				 
-				 mGraphic->FillPie(saddleBrownBrush,(int)D_Robot->X -r ,(int)D_Robot->Y -r ,(int) D_Robot->R ,(int)D_Robot->R,(int) 0,(int) 360 );
+				 mGraphic->FillPie(HotPinkBrush,(int)D_Robot->X -r ,(int)D_Robot->Y -r ,(int) D_Robot->R ,(int)D_Robot->R,(int) 0,(int) 360 );
 				 mGraphic->DrawLine(bluePen,(int)D_Robot->X,(int)D_Robot->Y , (int)D_Robot->X_tar , (int)D_Robot->Y_tar);
 				 
 				 scanning();
@@ -420,36 +427,24 @@ namespace SKS_VC2013 {
 			if(Re_Movement->Checked){
 				if(R_Position->x!=0 || R_Position->y!=0 || R_Position->ang!=0){
 					D_Robot->X = R_Position->x;
-					D_Robot->Y = 600 - R_Position->y;
+					D_Robot->Y = Map_Height - R_Position->y;
 					D_Robot->Angle = R_Position->ang;
 				}
+				try{
+					XmlDocument^ doc = gcnew XmlDocument();
+					doc->Load("Robot_Simulator.xml");
+					XmlNode^ Manual = doc->SelectSingleNode("/Simulator/Sim_Position");
+					XmlElement^ element=(XmlElement^)Manual;
 
-				XmlDocument^ doc = gcnew XmlDocument();
-				doc->Load("Robot_Simulator.xml");
-				XmlNode^ Manual = doc->SelectSingleNode("/Simulator/Sim_Position");
-				XmlElement^ element=(XmlElement^)Manual;
+					element->SetAttribute("x",System::Convert::ToString(D_Robot->X));
+					element->SetAttribute("y",System::Convert::ToString(Map_Height-D_Robot->Y));
+					element->SetAttribute("sita",System::Convert::ToString(D_Robot->Angle));
 
-				element->SetAttribute("x",System::Convert::ToString(D_Robot->X));
-				element->SetAttribute("y",System::Convert::ToString(600-D_Robot->Y));
-				element->SetAttribute("sita",System::Convert::ToString(D_Robot->Angle));
-
-				doc->Save("Robot_Simulator.xml");
+					doc->Save("Robot_Simulator.xml");
+				}catch (IOException^){
+				}
 			}
 		}
-	/*private: void wheel_vector(){
-				 double wheel[3];
-				 double w = w*260;
-				 double robot_radius = 1;
-
-				 double angle1 = (PI/6)+D_Order->Radian;
-				 double angle2 = 5*(PI/6)+D_Order->Radian;
-				 double angle3 = 3*(PI/2)+D_Order->Radian;
-				 if(D_Order->X !=0 || D_Order->Y !=0 || D_Order->Radian !=0){
-					 wheel[0] = -sin(angle1)*D_Order->X + cos(angle1)*D_Order->Y - robot_radius*w;
-					 wheel[1] = -sin(angle2)*D_Order->X + cos(angle2)*D_Order->Y - robot_radius*w;
-					 wheel[2] = -sin(angle3)*D_Order->X + cos(angle3)*D_Order->Y - robot_radius*w;
-				 }
-			 }*/
 
 	private: void scanning(){
 				 int num = D_Range->Angle/D_Range->Spa + 1;
@@ -483,26 +478,10 @@ namespace SKS_VC2013 {
 					 if(Laser_box->Checked)
 						 mGraphic->DrawLine(orangePen , (int)fmap_x , (int)fmap_y , (int)map_x , (int)map_y);
 
-					 
 					 Laser_dis[i]= sqrt(pow(map_y-fmap_y,2)+pow(map_x-fmap_x,2));
 					 i++;
-					 
-
 					 tar = tar + (D_Range->Spa*PI/180);
 				 }
-
-				 /*XmlDocument^ doc = gcnew XmlDocument();
-				 doc->Load("Laser_Distance.xml");
-				 XmlNode^ Sta = doc->SelectSingleNode("Status/DirectionDistance");
-				 Sta->RemoveAll();
-				 for(i = 0 ; i < num ; i++){
-					 XmlElement^ Distance = doc->CreateElement("aa");
-					 Distance->SetAttribute("Distance",System::Convert::ToString(Laser_dis[i]));
-					 Sta->AppendChild(Distance);
-				 }
-
-				 doc->Save("Laser_Distance.xml");*/
-
 				 drawMap->Image = mBMP;
 			 }
 //障礙物判定
@@ -560,6 +539,8 @@ private: System::Void drawMap_MouseMove(System::Object^  sender, System::Windows
 				ChangeObject(D_Furniture->M_Library.Cabinet,e);
 			}else if (Furniture_Box->SelectedText == "BedRM_Bed"){
 				ChangeObject(D_Furniture->M_BedRM.Bed,e);
+			}else if (Furniture_Box->SelectedText == "Trashcan"){
+				ChangeObject(D_Furniture->M_Trashcan,e);
 			}else if (Furniture_Box->SelectedText == "ChargeArea"){
 				ChangeObject(D_Furniture->M_ChargeArea,e);
 			}else if (Furniture_Box->SelectedText == "EndArea"){
@@ -577,7 +558,7 @@ private: System::Void drawMap_MouseMove(System::Object^  sender, System::Windows
 			}
 		}
 private: System::Void Map_Save_Click(System::Object^  sender, System::EventArgs^  e) {
-			 mBMP  = gcnew Bitmap("SKS_2013MAP.bmp"); //背景和框繪製區
+			 mBMP  = gcnew Bitmap("SKS_2013MAP.bmp"); //background and border draw
 			 mGraphic   = Graphics::FromImage(mBMP);
 			 Read_Object();
 			 if(mBMP_base != nullptr)
@@ -589,7 +570,7 @@ private: System::Void Ang_CB_SelectedIndexChanged(System::Object^  sender, Syste
 private: System::Void Spa_CB_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 D_Range->Spa = System::Convert::ToInt32(Spa_CB->Text);
 		 }
-private: System::Void Save_Position_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void Re_Position_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 Robot_Request("Position");
 		 }
 private: System::Void Re_Movement_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
