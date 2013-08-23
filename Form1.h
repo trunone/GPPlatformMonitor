@@ -102,7 +102,8 @@ namespace SKS_VC2013 {
 	private: System::Windows::Forms::PictureBox^  drawPB;
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^  View_set;
-	private: System::Windows::Forms::ToolStripMenuItem^  Map_set;
+	private: System::Windows::Forms::ToolStripMenuItem^  MapToolStripMenuItem;
+
 	private: System::Windows::Forms::HScrollBar^  Speed_Bar;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  Speed_lab;
@@ -110,7 +111,7 @@ namespace SKS_VC2013 {
 	private: System::Windows::Forms::GroupBox^  groupBox1;
 	private: System::Windows::Forms::Button^  R_b;
 	private: System::Windows::Forms::Button^  L_b;
-	private: System::Windows::Forms::CheckBox^  Map_check;
+	private: System::Windows::Forms::CheckBox^  Ctrl_check;
 
 	private: System::Windows::Forms::GroupBox^  groupBox2;
 	private: System::Windows::Forms::CheckBox^  Call_back;
@@ -160,7 +161,7 @@ namespace SKS_VC2013 {
 			this->drawPB = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->View_set = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->Map_set = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->MapToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->visonToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->laserToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->CameraToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -176,7 +177,7 @@ namespace SKS_VC2013 {
 			this->Auto_check = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->Call_back = (gcnew System::Windows::Forms::CheckBox());
-			this->Map_check = (gcnew System::Windows::Forms::CheckBox());
+			this->Ctrl_check = (gcnew System::Windows::Forms::CheckBox());
 			this->Cam_lab = (gcnew System::Windows::Forms::Label());
 			this->TakeBall = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -329,18 +330,18 @@ namespace SKS_VC2013 {
 			// 
 			// View_set
 			// 
-			this->View_set->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->Map_set, this->visonToolStripMenuItem, 
-				this->laserToolStripMenuItem, this->CameraToolStripMenuItem});
+			this->View_set->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->MapToolStripMenuItem, 
+				this->visonToolStripMenuItem, this->laserToolStripMenuItem, this->CameraToolStripMenuItem});
 			this->View_set->Name = L"View_set";
 			this->View_set->Size = System::Drawing::Size(47, 20);
 			this->View_set->Text = L"View";
 			// 
-			// Map_set
+			// MapToolStripMenuItem
 			// 
-			this->Map_set->Name = L"Map_set";
-			this->Map_set->Size = System::Drawing::Size(120, 22);
-			this->Map_set->Text = L"Map";
-			this->Map_set->Click += gcnew System::EventHandler(this, &Form1::Map_set_Click);
+			this->MapToolStripMenuItem->Name = L"MapToolStripMenuItem";
+			this->MapToolStripMenuItem->Size = System::Drawing::Size(120, 22);
+			this->MapToolStripMenuItem->Text = L"Map";
+			this->MapToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::MapToolStripMenuItem_Click);
 			// 
 			// visonToolStripMenuItem
 			// 
@@ -427,7 +428,7 @@ namespace SKS_VC2013 {
 			this->groupBox1->Controls->Add(this->Auto_check);
 			this->groupBox1->Controls->Add(this->groupBox2);
 			this->groupBox1->Controls->Add(this->Call_back);
-			this->groupBox1->Controls->Add(this->Map_check);
+			this->groupBox1->Controls->Add(this->Ctrl_check);
 			this->groupBox1->Controls->Add(this->Cam_lab);
 			this->groupBox1->Controls->Add(this->TakeBall);
 			this->groupBox1->Controls->Add(this->drawPB);
@@ -491,18 +492,19 @@ namespace SKS_VC2013 {
 			this->Call_back->Text = L"Request";
 			this->Call_back->UseVisualStyleBackColor = false;
 			// 
-			// Map_check
+			// Ctrl_check
 			// 
-			this->Map_check->AutoSize = true;
-			this->Map_check->Font = (gcnew System::Drawing::Font(L"新細明體", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->Ctrl_check->AutoSize = true;
+			this->Ctrl_check->Font = (gcnew System::Drawing::Font(L"新細明體", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(136)));
-			this->Map_check->ForeColor = System::Drawing::SystemColors::ControlLightLight;
-			this->Map_check->Location = System::Drawing::Point(8, 26);
-			this->Map_check->Name = L"Map_check";
-			this->Map_check->Size = System::Drawing::Size(93, 16);
-			this->Map_check->TabIndex = 23;
-			this->Map_check->Text = L"Ctrl_Simulator";
-			this->Map_check->UseVisualStyleBackColor = true;
+			this->Ctrl_check->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->Ctrl_check->Location = System::Drawing::Point(8, 26);
+			this->Ctrl_check->Name = L"Ctrl_check";
+			this->Ctrl_check->Size = System::Drawing::Size(93, 16);
+			this->Ctrl_check->TabIndex = 23;
+			this->Ctrl_check->Text = L"Ctrl_Simulator";
+			this->Ctrl_check->UseVisualStyleBackColor = true;
+			this->Ctrl_check->CheckedChanged += gcnew System::EventHandler(this, &Form1::Ctrl_check_CheckedChanged);
 			// 
 			// Cam_lab
 			// 
@@ -735,9 +737,18 @@ namespace SKS_VC2013 {
 					Client_already = 1;
 				}else{
 					Client_already = 0;
+					Client_set->Text = "Set";
 				}
-					
-				byteNum =ClientSocket->Receive(recvBytes,recvBytes->Length,static_cast<SocketFlags>(0)); /**< Wait Message. */
+
+				try{
+					byteNum =ClientSocket->Receive(recvBytes,recvBytes->Length,static_cast<SocketFlags>(0)); /**< Wait Message. */
+				}
+				catch (SocketException^){
+					ClientSocket->Close();
+					timer2->Stop();
+					timer3->Stop();
+					Client_set->Text = "Set";
+				}
 				
 				//!Receive area.
 				if(byteNum==0) break;
@@ -760,10 +771,6 @@ namespace SKS_VC2013 {
 				MSG_back->Close();
 
 				Read_Status();
-
-				/*MSG_Str = recvstring;
-				Thread ^setTextThread =gcnew Thread(gcnew ThreadStart(this,&Form1::ThreadProcSafe));
-				setTextThread->Start();*/
 			}
 			ClientSocket->Close();
 			System::Diagnostics::Debug::WriteLine("Form1::waitAcceptSocket");
@@ -797,25 +804,55 @@ namespace SKS_VC2013 {
 	private: System::Void backgroundWorker2_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e) {
 				 waitAcceptSocket();
 			 }
-/**View Message. */
-	void ThreadProcSafe()
-	{
-		if (MSG_list->InvokeRequired){
-			SetTextDelegate^ d = gcnew SetTextDelegate(this, &Form1::ThreadProcSafe);
-			this->Invoke(d, gcnew array<Object^> { });
-		}
-		else{
-			this->MSG_list->Items->Add( "Recive: " + MSG_Str + "\r\n");
-			MSG_list->SelectedIndex = MSG_list->Items->Count-1;
-		}
+
+//!Ladar Drawing.
+	void Radar_Basic(double x , double y){
+		Pen^ blackPen = gcnew Pen(Color::Black, 3);
+
+		mBMP  = gcnew Bitmap(Radar_Width, Radar_Height); //背景和框繪製區
+		mGraphic   = Graphics::FromImage(mBMP);
+		mBMP  = gcnew Bitmap("Radar.png");
+		mGraphic   = Graphics::FromImage(mBMP);
+		drawPoint(x,y);
+		mGraphic->DrawLine(blackPen , (int)RaderCenter_x , (int)RaderCenter_y , (int)x , (int)y);
+
 	}
+/**<Red Point. */
+	private: void drawPoint(double x , double y){
+				 SolidBrush^ PointBrush = gcnew SolidBrush( Color::Red );
+				 mGraphic->FillPie(PointBrush,(int)x-3 ,(int)y-3 ,(int)7 ,(int)7,(int) 0,(int) 359 );
+				 drawPB->Image = mBMP;
+			 }
+/**<ArcInt. */
+	private: void DrawArcInt(double length,double ang){
+				 Pen^ blackPen = gcnew Pen( Color::Black,3 );		/**<Black Pen. */
+				 SolidBrush^ skyblueBrush = gcnew SolidBrush( Color::SkyBlue );
 
+				 double x = RaderCenter_x-length;
+				 double y = RaderCenter_y-length;
+				 double width = length+length;
+				 double height = length+length;
 
+				 double startAngle = 270;
 
-//!Furniture Xml.
+				 while(ang>180)ang = ang - 360;
+				 while(ang<-180)ang = ang + 360;
+				 double sweepAngle = ang;
+				 if(width>0 && height>0){
+					 mGraphic->FillPie(skyblueBrush,(int)x,(int)y,(int) width,(int)height,(int) startAngle,(int) sweepAngle );
+					 mGraphic->DrawArc(blackPen,(int)x,(int)y,(int) width,(int)height,(int) startAngle,(int) sweepAngle );
+				 }
+
+				 drawPB->Image = mBMP;
+			 }
+
+/**
+	Xml Area.
+*/
+//!Read Furniture Xml.
 		void Read_Object(){
 			XmlDocument^ doc = gcnew XmlDocument();
-			doc->Load("Robot_Config.xml");
+			doc->Load("Furniture_set.xml");
 			XmlNode^ Manual = doc->SelectSingleNode("/Config/DirectionObject");
 
 			for(int i =0 ;i < Manual->ChildNodes->Count;i++){
@@ -908,6 +945,8 @@ namespace SKS_VC2013 {
 				}
 			}
 		}
+
+//!Ask Request Xml.
 		void Rest_Request(){
 			XmlDocument^ doc = gcnew XmlDocument();
 			doc->Load("Robot_Request.xml");
@@ -916,7 +955,7 @@ namespace SKS_VC2013 {
 			doc->Save("Robot_Request.xml");
 		}
 
-//!Callback Status Xml.
+//!Read Callback Status Xml.
 public:	void Read_Status(){
 			XmlDocument^ doc = gcnew XmlDocument();
 			doc->Load("Back_Status.xml");
@@ -934,13 +973,13 @@ public:	void Read_Status(){
 							XmlNode^ b = element->ChildNodes[i];
 							XmlElement^ a = (XmlElement^) b;
 
-							R_Laser[i].Angle = 90-(2.5*i);
-							R_Laser[i].Distance = System::Convert::ToDouble(a->GetAttribute("d")) / 10;
+							R_Laser[i].Angle = 90-(2.5*i);	//! 90 to -90.
+							R_Laser[i].Distance = System::Convert::ToDouble(a->GetAttribute("d")) / 10;	//! mm to cm.
 						}
 					}else if(element->Name == "Position"){
 						R_Position->x= System::Convert::ToDouble(element->GetAttribute("x"));
 						R_Position->y= System::Convert::ToDouble(element->GetAttribute("y"));
-						R_Position->ang= System::Convert::ToDouble(element->GetAttribute("sita"))*180/PI;
+						R_Position->ang= System::Convert::ToDouble(element->GetAttribute("sita"))*180/PI; //! Radian to Angle
 					}else if(element->Name == "Camera_Angle"){
 						R_Robot->Camera_Angle = System::Convert::ToDouble(element->GetAttribute("ang"));
 					}
@@ -948,18 +987,21 @@ public:	void Read_Status(){
 			}
 		}
 
-//!Command Xml.
+//! Change to Unit.
+		double ChangetoUnit(double Sit){
+			double Unit_Sit;
+			if(Sit > Rader_Radius){	Unit_Sit = 1;}
+			else if(Sit < -1*Rader_Radius){	Unit_Sit = -1;}
+			else{	Unit_Sit = Sit / Rader_Radius;}
+
+			return Unit_Sit;
+		}
+//!Read Command Xml.
 public:	void Write_Robot(){
 			double Unit_x,Unit_y;
 
-			if(D_Touch->X > Rader_Radius){	Unit_x = 1;}
-			else if(D_Touch->X < -1*Rader_Radius){	Unit_x = -1;}
-			else{	Unit_x = D_Touch->X / Rader_Radius;}
-		
-			if(D_Touch->Y > Rader_Radius){	Unit_y = 1;}
-			else if(D_Touch->Y < -1*Rader_Radius){	Unit_y = -1;}
-			else{	Unit_y = D_Touch->Y / Rader_Radius;}
-
+			Unit_x = ChangetoUnit(D_Touch->X);
+			Unit_y = ChangetoUnit(D_Touch->Y);
 		
 			if(D_mos->Right == 0){
 				D_Touch->Radian = 0;
@@ -967,9 +1009,10 @@ public:	void Write_Robot(){
 				Unit_x = 0;
 				Unit_y = 0;
 			}
+
 			XmlDocument^ doc = gcnew XmlDocument();
 			doc->Load("Robot_Command.xml");
-			XmlNode^ Manual = doc->SelectSingleNode("/Command/ManualDirection"); //選擇節點
+			XmlNode^ Manual = doc->SelectSingleNode("/Command/ManualDirection"); //!Choose Node.
 
 			int Sim_t=0;
 
@@ -1001,11 +1044,13 @@ public:	void Write_Robot(){
 
 
 			doc->Save("Robot_Command.xml");
-			if(Map_check->Checked){
+			if(Ctrl_check->Checked){
 				D_Order->X = Unit_x * Speed_Bar->Value;
 				D_Order->Y = Unit_y * Speed_Bar->Value;
 				D_Order->Radian = D_Touch->Radian;
-				mMap->drawRobot();
+				if (mMap != nullptr){
+					mMap->drawRobot();
+				}
 			}
 		}
 public:	void Read_Robot(){
@@ -1026,50 +1071,9 @@ public:	void Read_Robot(){
 			}
 		}
 
-//!Ladar Drawing.
-	void Radar_Basic(double x , double y){
-		Pen^ blackPen = gcnew Pen(Color::Black, 3);
-
-		mBMP  = gcnew Bitmap(Radar_Width, Radar_Height); //背景和框繪製區
-		mGraphic   = Graphics::FromImage(mBMP);
-		mBMP  = gcnew Bitmap("Radar.png");
-		mGraphic   = Graphics::FromImage(mBMP);
-		drawPoint(x -2,y -2);
-		mGraphic->DrawLine(blackPen , (int)RaderCenter_x , (int)RaderCenter_y , (int)x , (int)y);
-		
-	}
-/**<Red Point. */
-	private: void drawPoint(double x , double y){
-				 Pen^ redPen = gcnew Pen(Color::Red, 6);
-				 mGraphic->DrawEllipse(redPen,x,y,3,3);
-				 drawPB->Image = mBMP;
-			 }
-/**<ArcInt. */
-	private: void DrawArcInt(double length,double ang){
-			Pen^ blackPen = gcnew Pen( Color::Black,3 );		/**<Black Pen. */
-			SolidBrush^ skyblueBrush = gcnew SolidBrush( Color::SkyBlue );
-
-			double x = RaderCenter_x-length;
-			double y = RaderCenter_y-length;
-			double width = length+length;
-			double height = length+length;
-
-			double startAngle = 270;
-
-			while(ang>180)ang = ang - 360;
-			while(ang<-180)ang = ang + 360;
-			double sweepAngle = ang;
-			if(width>0 && height>0){
-				mGraphic->FillPie(skyblueBrush,(int)x,(int)y,(int) width,(int)height,(int) startAngle,(int) sweepAngle );
-				mGraphic->DrawArc(blackPen,(int)x,(int)y,(int) width,(int)height,(int) startAngle,(int) sweepAngle );
-			}
-			
-			drawPB->Image = mBMP;
-		}
-
 //! Control and Send.
 public:	void send(){
-			if(Client_already && ClientSocket->Connected){
+			if(Ctrl_check->Checked && Client_already && ClientSocket->Connected){
 				fileName = "Robot_Command.xml";
 				ClientSocket->SendFile(fileName);
 			}
@@ -1207,8 +1211,9 @@ public:	void send(){
 			 Speed_lab->Text = System::Convert::ToString(Speed_Bar->Value);
 		 }
 
-//! Form Area
-private: System::Void Map_set_Click(System::Object^  sender, System::EventArgs^  e) {
+/**< Form Area.
+*/
+private: System::Void MapToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 mMap = gcnew Map();
 			 mMap->Show();
 		 }
@@ -1216,7 +1221,6 @@ private: System::Void visonToolStripMenuItem_Click(System::Object^  sender, Syst
 			 mVision = gcnew PureModelForm::MainForm();
 			 mVision->Show();
 		 }
-///////////////////////////回傳控制區/////////////////////////////////////
 private: System::Void laserToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 mLaser = gcnew Laser();
 			 mLaser->Show();
@@ -1239,17 +1243,18 @@ private: System::Void mapEditerToolStripMenuItem_Click(System::Object^  sender, 
 		 }
 
 private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e) {
-			 if(Client_already && ClientSocket->Connected){
+			 if(Client_already){
 				 if (Call_back->Checked && ClientSocket->Connected){
 					 fileName = "Robot_Request.xml";
 					 ClientSocket->SendFile(fileName);
 				 }
-				 if (Auto_check->Checked){
+				 if (Auto_check->Checked && ClientSocket->Connected){
 					 fileName = "Robot_Command.xml";
 					 ClientSocket->SendFile(fileName);
-					 fileName = "Robot_Simulator.xml";
-					 ClientSocket->SendFile(fileName);
-
+					 if(ClientSocket->Connected){
+						 fileName = "Robot_Simulator.xml";
+						 ClientSocket->SendFile(fileName);
+					 }
 					 D_Order->X = R_Robot->X;
 					 D_Order->Y = R_Robot->Y;
 					 D_Order->Radian = R_Robot->Radian;
@@ -1257,7 +1262,8 @@ private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e
 				 Client_set->Text = "Close";
 			 }
 		 }
-//! Timing Set
+/**< Timing Set.
+*/ 
 private: System::Void T_Stop_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if(timer2->Enabled)
 			 timer2->Stop();
@@ -1325,14 +1331,22 @@ private: System::Void Cam_Bar_Scroll(System::Object^  sender, System::Windows::F
 
 private: System::Void Auto_check_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 Write_Robot();
+			 if(Ctrl_check->Checked){
+				 Ctrl_check->Checked = false;
+			 }
 		 }
-
+private: System::Void Ctrl_check_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+			 if(Auto_check->Checked){
+				 Auto_check->Checked = false;
+			 }
+		 }
 private: System::Void Send_Config_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if(Client_already && ClientSocket->Connected){
 				 fileName = "Robot_ReloadConfig.xml";
 				 ClientSocket->SendFile(fileName);
 			 }
 		 }
+
 };
 }
 

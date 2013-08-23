@@ -2,16 +2,16 @@
 	#define DatabaseH
 	#include <string>
 
-	#define Radar_Width 144				//雷達圖寬度
-	#define Radar_Height 144			//雷達圖長度
+	#define Radar_Width 144				//!雷達圖寬度
+	#define Radar_Height 144			//!雷達圖長度
 	#define Map_Width 600
 	#define Map_Height 600
 	#define Laser_Width 500
 	#define Laser_Height 500
 	
-	const double RaderCenter_x = 72;		//雷達中心 x
-	const double RaderCenter_y = 72;		//雷達中心 y
-	const double Rader_Radius = 70;				//雷達半徑 = 70
+	const double RaderCenter_x = 72;		//!雷達中心 x
+	const double RaderCenter_y = 72;		//!雷達中心 y
+	const double Rader_Radius = 70;				//!雷達半徑 = 70
 	const double PI = 3.14159265358979323846;
 
 	const double LaserCenter_x = 250;
@@ -20,8 +20,8 @@
 	class data1
 	{
 		public:		// User declarations
-			double X;			//機器人的X座標
-			double Y;			//機器人的Y座標
+			double X;			//!機器人的X座標
+			double Y;			//!機器人的Y座標
 			double X_tar;
 			double Y_tar;
 			double Angle;

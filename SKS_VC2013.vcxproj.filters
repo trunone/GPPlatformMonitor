@@ -40,9 +40,6 @@
     <None Include="app.ico">
       <Filter>資源檔</Filter>
     </None>
-    <None Include="drawMap.Image.bmp">
-      <Filter>資源檔</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SKS_VC2013.cpp">

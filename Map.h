@@ -308,10 +308,10 @@ namespace SKS_VC2013 {
 				 for(num=10;num<=20;num++) Spa_CB->Items->Add(num);
 
 				 D_Robot->X=30;
-				 D_Robot->Y=335;
+				 D_Robot->Y=Map_Height-265;
 				 D_Robot->R=45;
 
-				 D_Robot->X_tar = D_Robot->X + 22.5;
+				 D_Robot->X_tar = D_Robot->X + D_Robot->R/2;
 				 D_Robot->Y_tar = D_Robot->Y;
 				 D_Robot->Angle = atan2(D_Robot->Y_tar - D_Robot->Y,D_Robot->X_tar - D_Robot->X)*PI/180;
 
@@ -322,67 +322,6 @@ namespace SKS_VC2013 {
 				 drawRobot();
 				 timer1->Start();
 			 }
-/////////////////////////家具繪製區///////////////////////////////////////
-	void Read_Object(){
-		drawObject(D_Furniture->M_LivingRM.Sofa,0);
-		drawObject(D_Furniture->M_LivingRM.Table,1);
-		drawObject(D_Furniture->M_LivingRM.Cabinet,2);
-		drawObject(D_Furniture->M_DiningRM.Table,3);
-		drawObject(D_Furniture->M_DiningRM.Chair,4);
-		drawObject(D_Furniture->M_Library.Desk,5);
-		drawObject(D_Furniture->M_Library.Chair,6);
-		drawObject(D_Furniture->M_Library.Cabinet,7);
-		drawObject(D_Furniture->M_BedRM.Bed,8);
-		drawObject(D_Furniture->M_DiningRM.door,9);
-		drawObject(D_Furniture->M_BedRM.door,10);
-		drawObject(D_Furniture->M_ChargeArea,11);
-		drawObject(D_Furniture->M_EndArea,12);
-		drawObject(D_Furniture->M_Trashcan,13);
-		mBMP_base = mBMP;
-	}
-	
-	void drawObject(Furniture_site object,int num){
-		Pen^ whitePen = gcnew Pen( Color::White,object.Width );
-		Pen^ redPen = gcnew Pen( Color::Red,object.Width );
-		Pen^ yellowPen = gcnew Pen( Color::Yellow,object.Width );
-		double x_sin,y_cos;
-		int i,temp;
-		int a_x,a_y,b_x,b_y;
-		int _w;
-		
-		a_x = object.x + (object.Width/2);
-		a_y = object.y;
-		x_sin = sin(object.Angle*PI/180);
-		y_cos = cos(object.Angle*PI/180);
-		b_x = a_x + object.Height*x_sin;
-		b_y = a_y + object.Height*y_cos;
-		temp = (object.Width>object.Height)? object.Height : object.Width;
-		
-		if(num == 11)	mGraphic->DrawLine(yellowPen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
-		else if(num == 12)	mGraphic->DrawLine(redPen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
-		else if(num == 13){
-			SolidBrush^ TrashcanBrush = gcnew SolidBrush( Color::White );
-
-			mGraphic->FillPie(TrashcanBrush,(int)object.x ,(int)object.y ,(int)object.Width ,(int)object.Height,(int) 0,(int) 360 );
-		}else {
-			mGraphic->DrawLine(whitePen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
-			_w = (((int)object.Angle%90 )==0) ?object.Width :object.Width+2;
-			if(num == 0){
-				_w = (((int)object.Angle%90 )==0) ?55 :55+3;
-				Pen^ blackPen = gcnew Pen( Color::Black,_w );
-				mGraphic->DrawLine(blackPen , (int)(a_x+12.5*y_cos + 15*x_sin) , (int)(a_y -12.5*x_sin + 15*y_cos) , (int)(b_x+12.5*y_cos - 15*x_sin) , (int)(b_y-12.5*x_sin - 15*y_cos));
-			}else if(num == 3){
-				Pen^ blackPen = gcnew Pen( Color::Black,_w );
-				Pen^ blackPen2 = gcnew Pen( Color::Black,object.Width-20 );
-				mGraphic->DrawLine(blackPen , (int)(a_x + 10*x_sin) , (int)(a_y + 10*y_cos) , (int)(b_x - 10*x_sin) , (int)(b_y - 10*y_cos));
-				mGraphic->DrawLine(blackPen2 , (int)(a_x - 5*x_sin) , (int)(a_y - 5*y_cos) , (int)(b_x + 5*x_sin) , (int)(b_y + 5*y_cos));
-			}else if(num == 5){
-				Pen^ blackPen = gcnew Pen( Color::Black,_w );
-				mGraphic->DrawLine(blackPen , (int)(a_x + 3*x_sin) , (int)(a_y + 3*y_cos) , (int)(b_x - 30*x_sin) , (int)(b_y - 30*y_cos));
-			}
-		}
-	}
-
 ///////////////////////機器人繪製區///////////////////////////////////////
 	public: void drawRobot(){
 				 mBMP  = gcnew Bitmap("SKS_2013MAP.bmp"); //背景和框繪製區
@@ -420,11 +359,12 @@ namespace SKS_VC2013 {
 				 mGraphic->FillPie(HotPinkBrush,(int)D_Robot->X -r ,(int)D_Robot->Y -r ,(int) D_Robot->R ,(int)D_Robot->R,(int) 0,(int) 360 );
 				 mGraphic->DrawLine(bluePen,(int)D_Robot->X,(int)D_Robot->Y , (int)D_Robot->X_tar , (int)D_Robot->Y_tar);
 				 
-				 scanning();
+				 if(Laser_box->Checked)
+					 scanning();
 				 drawMap->Image = mBMP;
 			 }
 		void writeSimulator(){
-			if(Re_Movement->Checked){
+			if(Re_Movement->Checked || Re_Position->Checked){
 				if(R_Position->x!=0 || R_Position->y!=0 || R_Position->ang!=0){
 					D_Robot->X = R_Position->x;
 					D_Robot->Y = Map_Height - R_Position->y;
@@ -442,6 +382,64 @@ namespace SKS_VC2013 {
 
 					doc->Save("Robot_Simulator.xml");
 				}catch (IOException^){
+				}
+			}
+		}
+/////////////////////////家具繪製區///////////////////////////////////////
+		void Read_Object(){
+			drawObject(D_Furniture->M_LivingRM.Sofa,0);
+			drawObject(D_Furniture->M_LivingRM.Table,1);
+			drawObject(D_Furniture->M_LivingRM.Cabinet,2);
+			drawObject(D_Furniture->M_DiningRM.Table,3);
+			drawObject(D_Furniture->M_DiningRM.Chair,4);
+			drawObject(D_Furniture->M_Library.Desk,5);
+			drawObject(D_Furniture->M_Library.Chair,6);
+			drawObject(D_Furniture->M_Library.Cabinet,7);
+			drawObject(D_Furniture->M_BedRM.Bed,8);
+			drawObject(D_Furniture->M_DiningRM.door,9);
+			drawObject(D_Furniture->M_BedRM.door,10);
+			drawObject(D_Furniture->M_ChargeArea,11);
+			drawObject(D_Furniture->M_EndArea,12);
+			drawObject(D_Furniture->M_Trashcan,13);
+			mBMP_base = mBMP;
+		}
+		void drawObject(Furniture_site object,int num){
+			Pen^ whitePen = gcnew Pen( Color::White,object.Width );
+			Pen^ redPen = gcnew Pen( Color::Red,object.Width );
+			Pen^ yellowPen = gcnew Pen( Color::Yellow,object.Width );
+			double x_sin,y_cos;
+			int i,temp;
+			int a_x,a_y,b_x,b_y;
+			int _w;
+
+			a_x = object.x + (object.Width/2);
+			a_y = object.y;
+			x_sin = sin(object.Angle*PI/180);
+			y_cos = cos(object.Angle*PI/180);
+			b_x = a_x + object.Height*x_sin;
+			b_y = a_y + object.Height*y_cos;
+			temp = (object.Width>object.Height)? object.Height : object.Width;
+
+			if(num == 11)	mGraphic->DrawLine(yellowPen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
+			else if(num == 12)	mGraphic->DrawLine(redPen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
+			else if(num == 13){
+				SolidBrush^ TrashcanBrush = gcnew SolidBrush( Color::White );
+				mGraphic->FillPie(TrashcanBrush,(int)object.x ,(int)object.y ,(int)object.Width ,(int)object.Height,(int) 0,(int) 360 );
+			}else {
+				mGraphic->DrawLine(whitePen , (int)a_x , (int)a_y , (int)b_x , (int)b_y);
+				_w = (((int)object.Angle%90 )==0) ?object.Width :object.Width+2;
+				if(num == 0){
+					_w = (((int)object.Angle%90 )==0) ?55 :55+3;
+					Pen^ blackPen = gcnew Pen( Color::Black,_w );
+					mGraphic->DrawLine(blackPen , (int)(a_x+12.5*y_cos + 15*x_sin) , (int)(a_y -12.5*x_sin + 15*y_cos) , (int)(b_x+12.5*y_cos - 15*x_sin) , (int)(b_y-12.5*x_sin - 15*y_cos));
+				}else if(num == 3){
+					Pen^ blackPen = gcnew Pen( Color::Black,_w );
+					Pen^ blackPen2 = gcnew Pen( Color::Black,object.Width-20 );
+					mGraphic->DrawLine(blackPen , (int)(a_x + 10*x_sin) , (int)(a_y + 10*y_cos) , (int)(b_x - 10*x_sin) , (int)(b_y - 10*y_cos));
+					mGraphic->DrawLine(blackPen2 , (int)(a_x - 5*x_sin) , (int)(a_y - 5*y_cos) , (int)(b_x + 5*x_sin) , (int)(b_y + 5*y_cos));
+				}else if(num == 5){
+					Pen^ blackPen = gcnew Pen( Color::Black,_w );
+					mGraphic->DrawLine(blackPen , (int)(a_x + 3*x_sin) , (int)(a_y + 3*y_cos) , (int)(b_x - 30*x_sin) , (int)(b_y - 30*y_cos));
 				}
 			}
 		}
@@ -503,7 +501,9 @@ private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e
 			 Sim_Y->Text = "Y：" +System::Convert::ToString((int)R_Robot->Y);
 			 Sim_Sita->Text = "Sita：" +System::Convert::ToString((int)R_Robot->Radian);
 		 }
-
+/**<
+	Furniture Set.
+*/
 private: System::Void drawMap_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 			 mos_click = 1;
 			 mos_x = e->X;
@@ -557,6 +557,7 @@ private: System::Void drawMap_MouseMove(System::Object^  sender, System::Windows
 				object.y = mos_y;
 			}
 		}
+
 private: System::Void Map_Save_Click(System::Object^  sender, System::EventArgs^  e) {
 			 mBMP  = gcnew Bitmap("SKS_2013MAP.bmp"); //background and border draw
 			 mGraphic   = Graphics::FromImage(mBMP);

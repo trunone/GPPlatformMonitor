@@ -1229,7 +1229,7 @@ private: System::Void Furniture_Load(System::Object^  sender, System::EventArgs^
 
 	void witerObject(){
 		XmlDocument^ doc = gcnew XmlDocument();
-		doc->Load("Robot_Config.xml");
+		doc->Load("Furniture_set.xml");
 		XmlNode^ Manual = doc->SelectSingleNode("/Config/DirectionObject"); //¿ï¾Ü¸`ÂI
 
 		for(int i =0 ;i < Manual->ChildNodes->Count;i++){
@@ -1321,7 +1321,7 @@ private: System::Void Furniture_Load(System::Object^  sender, System::EventArgs^
 				element->SetAttribute("Angle",EndArea5->Text);
 			}
 		}
-		doc->Save("Robot_Config.xml");
+		doc->Save("Furniture_set.xml");
 	}
 
 	void ChangeObject(){
