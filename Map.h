@@ -491,7 +491,9 @@ namespace SKS_VC2013 {
 					f_x = D_Robot->X + (D_Robot->R/2) * cos(i*PI/180);
 					f_y = D_Robot->Y - (D_Robot->R/2) * sin(i*PI/180);
 					i+=5;
-					if(mBMP->GetPixel(f_x,f_y).R == 255 & mBMP->GetPixel(f_x,f_y).G == 255 & mBMP->GetPixel(f_x,f_y).B == 255)  a=1;
+					if(f_x > 0 && f_x< Map_Width && f_y > 0 && f_y < Map_Height){
+						if(mBMP->GetPixel(f_x,f_y).R == 255 & mBMP->GetPixel(f_x,f_y).G == 255 & mBMP->GetPixel(f_x,f_y).B == 255)  a=1;
+					}
 				 }
 				 return a;
 			 }

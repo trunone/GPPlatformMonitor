@@ -232,7 +232,7 @@ namespace SKS_VC2013 {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(82, 170);
+			this->label14->Location = System::Drawing::Point(72, 170);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(11, 12);
 			this->label14->TabIndex = 13;
@@ -241,7 +241,7 @@ namespace SKS_VC2013 {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(82, 145);
+			this->label13->Location = System::Drawing::Point(72, 145);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(11, 12);
 			this->label13->TabIndex = 12;
@@ -250,7 +250,7 @@ namespace SKS_VC2013 {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(82, 120);
+			this->label12->Location = System::Drawing::Point(72, 120);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(11, 12);
 			this->label12->TabIndex = 11;
@@ -286,7 +286,7 @@ namespace SKS_VC2013 {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(82, 95);
+			this->label8->Location = System::Drawing::Point(72, 95);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(11, 12);
 			this->label8->TabIndex = 7;
@@ -295,7 +295,7 @@ namespace SKS_VC2013 {
 			// Position_ang
 			// 
 			this->Position_ang->AutoSize = true;
-			this->Position_ang->Location = System::Drawing::Point(82, 70);
+			this->Position_ang->Location = System::Drawing::Point(72, 70);
 			this->Position_ang->Name = L"Position_ang";
 			this->Position_ang->Size = System::Drawing::Size(11, 12);
 			this->Position_ang->TabIndex = 6;
@@ -304,7 +304,7 @@ namespace SKS_VC2013 {
 			// Position_y
 			// 
 			this->Position_y->AutoSize = true;
-			this->Position_y->Location = System::Drawing::Point(82, 45);
+			this->Position_y->Location = System::Drawing::Point(72, 45);
 			this->Position_y->Name = L"Position_y";
 			this->Position_y->Size = System::Drawing::Size(11, 12);
 			this->Position_y->TabIndex = 5;
@@ -313,7 +313,7 @@ namespace SKS_VC2013 {
 			// Position_x
 			// 
 			this->Position_x->AutoSize = true;
-			this->Position_x->Location = System::Drawing::Point(82, 20);
+			this->Position_x->Location = System::Drawing::Point(72, 20);
 			this->Position_x->Name = L"Position_x";
 			this->Position_x->Size = System::Drawing::Size(11, 12);
 			this->Position_x->TabIndex = 4;

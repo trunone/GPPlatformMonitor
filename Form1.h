@@ -1243,24 +1243,26 @@ private: System::Void mapEditerToolStripMenuItem_Click(System::Object^  sender, 
 		 }
 
 private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e) {
-			 if(Client_already){
-				 if (Call_back->Checked && ClientSocket->Connected){
-					 fileName = "Robot_Request.xml";
-					 ClientSocket->SendFile(fileName);
-				 }
-				 if (Auto_check->Checked && ClientSocket->Connected){
-					 fileName = "Robot_Command.xml";
-					 ClientSocket->SendFile(fileName);
-					 if(ClientSocket->Connected){
-						 fileName = "Robot_Simulator.xml";
+			 try{
+				 if(Client_already){
+					 if (Call_back->Checked && ClientSocket->Connected){
+						 fileName = "Robot_Request.xml";
 						 ClientSocket->SendFile(fileName);
 					 }
-					 D_Order->X = R_Robot->X;
-					 D_Order->Y = R_Robot->Y;
-					 D_Order->Radian = R_Robot->Radian;
+					 if (Auto_check->Checked && ClientSocket->Connected){
+						 fileName = "Robot_Command.xml";
+						 ClientSocket->SendFile(fileName);
+						 if(ClientSocket->Connected){
+							 fileName = "Robot_Simulator.xml";
+							 ClientSocket->SendFile(fileName);
+						 }
+						 D_Order->X = R_Robot->X;
+						 D_Order->Y = R_Robot->Y;
+						 D_Order->Radian = R_Robot->Radian;
+					 }
+					 Client_set->Text = "Close";
 				 }
-				 Client_set->Text = "Close";
-			 }
+			 }catch(SocketException^){}
 		 }
 /**< Timing Set.
 */ 
